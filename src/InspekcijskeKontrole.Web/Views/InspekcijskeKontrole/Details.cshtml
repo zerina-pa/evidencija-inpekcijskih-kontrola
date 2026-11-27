@@ -1,0 +1,33 @@
+@model InspekcijskeKontrole.Web.Models.InspekcijskaKontrola
+
+@{
+    ViewData["Title"] = "Detalji inspekcijske kontrole";
+}
+
+<h1 class="h3 mb-3">Detalji inspekcijske kontrole</h1>
+
+<dl class="row">
+    <dt class="col-sm-3">Datum i vrijeme kontrole</dt>
+    <dd class="col-sm-9">@Model.DatumKontrole.ToString("dd.MM.yyyy. HH:mm")</dd>
+
+    <dt class="col-sm-3">Inspekcijsko tijelo</dt>
+    <dd class="col-sm-9">@Model.InspekcijskoTijelo.Naziv</dd>
+
+    <dt class="col-sm-3">Kontrolisani proizvod</dt>
+    <dd class="col-sm-9">@Model.Proizvod.Naziv</dd>
+
+    <dt class="col-sm-3">Serijski broj</dt>
+    <dd class="col-sm-9">@(Model.Proizvod.SerijskiBroj ?? "–")</dd>
+
+    <dt class="col-sm-3">Zemlja porijekla</dt>
+    <dd class="col-sm-9">@Model.Proizvod.ZemljaPorijekla</dd>
+
+    <dt class="col-sm-3">Rezultati kontrole</dt>
+    <dd class="col-sm-9">@Model.RezultatiKontrole</dd>
+
+    <dt class="col-sm-3">Proizvod siguran</dt>
+    <dd class="col-sm-9">@(Model.ProizvodSiguran ? "DA" : "NE")</dd>
+</dl>
+
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Izmijeni</a>
+<a asp-action="Index" class="btn btn-secondary">Nazad</a>

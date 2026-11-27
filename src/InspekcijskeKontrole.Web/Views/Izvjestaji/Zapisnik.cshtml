@@ -1,0 +1,48 @@
+@model InspekcijskeKontrole.Web.ViewModels.ZapisnikKontroleViewModel
+
+@{
+    ViewData["Title"] = "Zapisnik o inspekcijskoj kontroli";
+}
+
+<main class="izvjestaj zapisnik">
+    <div class="d-flex justify-content-between align-items-start mb-4 izvjestaj-akcije">
+        <h1 class="h3">Zapisnik o inspekcijskoj kontroli</h1>
+        <div class="text-end">
+            <button type="button"
+                    class="btn btn-outline-primary me-2"
+                    onclick="window.print();">
+                Štampaj
+            </button>
+            <a asp-controller="InspekcijskeKontrole"
+               asp-action="Index"
+               class="btn btn-secondary">
+                Nazad
+            </a>
+        </div>
+    </div>
+
+    <dl class="row izvjestaj-zaglavlje">
+        <dt class="col-sm-4">Inspekcijsko tijelo</dt>
+        <dd class="col-sm-8">@Model.NazivInspekcijskogTijela</dd>
+
+        <dt class="col-sm-4">Naziv proizvoda</dt>
+        <dd class="col-sm-8">@Model.NazivProizvoda</dd>
+
+        <dt class="col-sm-4">Serijski broj</dt>
+        <dd class="col-sm-8">@Model.SerijskiBroj</dd>
+
+        <dt class="col-sm-4">Zemlja porijekla</dt>
+        <dd class="col-sm-8">@Model.ZemljaPorijekla</dd>
+
+        <dt class="col-sm-4">Datum i vrijeme kontrole</dt>
+        <dd class="col-sm-8">@Model.DatumKontrole.ToString("dd.MM.yyyy. HH:mm")</dd>
+
+        <dt class="col-sm-4">Proizvod siguran</dt>
+        <dd class="col-sm-8">@(Model.ProizvodSiguran ? "DA" : "NE")</dd>
+    </dl>
+
+    <section class="mt-4">
+        <h2 class="h5">Rezultati kontrole</h2>
+        <div class="rezultati-kontrole border rounded p-3">@Model.RezultatiKontrole</div>
+    </section>
+</main>

@@ -1,0 +1,42 @@
+@model InspekcijskeKontrole.Web.ViewModels.IzvjestajKontrolaParametriViewModel
+
+@{
+    ViewData["Title"] = "Kontrole po inspekcijskom tijelu";
+}
+
+<h1 class="h3 mb-3">Kontrole po inspekcijskom tijelu</h1>
+
+<form asp-action="KontrolePoTijelu"
+      method="get"
+      class="col-lg-8">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="InspekcijskoTijeloId" class="form-label"></label>
+        <select asp-for="InspekcijskoTijeloId"
+                asp-items="ViewBag.InspekcijskaTijela"
+                class="form-select">
+            <option value="0">Izaberite inspekcijsko tijelo</option>
+        </select>
+        <span asp-validation-for="InspekcijskoTijeloId" class="text-danger"></span>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label asp-for="DatumOd" class="form-label"></label>
+            <input asp-for="DatumOd" type="date" class="form-control" />
+            <span asp-validation-for="DatumOd" class="text-danger"></span>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label asp-for="DatumDo" class="form-label"></label>
+            <input asp-for="DatumDo" type="date" class="form-control" />
+            <span asp-validation-for="DatumDo" class="text-danger"></span>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Prikaži izvještaj</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

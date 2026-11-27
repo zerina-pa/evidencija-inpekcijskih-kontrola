@@ -1,0 +1,25 @@
+@model InspekcijskeKontrole.Web.Models.InspekcijskoTijelo
+
+@{
+    ViewData["Title"] = "Brisanje inspekcijskog tijela";
+}
+
+<h1 class="h3 mb-3">Potvrda brisanja inspekcijskog tijela</h1>
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+<dl class="row">
+    <dt class="col-sm-3">Naziv inspekcijskog tijela</dt>
+    <dd class="col-sm-9">@Model.Naziv</dd>
+
+    <dt class="col-sm-3">Inspektorat</dt>
+    <dd class="col-sm-9">@Model.Inspektorat.GetDisplayName()</dd>
+
+    <dt class="col-sm-3">Nadležnost</dt>
+    <dd class="col-sm-9">@Model.Nadleznost.GetDisplayName()</dd>
+</dl>
+
+<form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+    <button type="submit" class="btn btn-danger">Obriši inspekcijsko tijelo</button>
+    <a asp-action="Index" class="btn btn-secondary">Odustani</a>
+</form>

@@ -1,0 +1,50 @@
+@model InspekcijskeKontrole.Web.ViewModels.InspekcijskaKontrolaFormModel
+
+<div class="mb-3">
+    <label asp-for="DatumKontrole" class="form-label"></label>
+    <input asp-for="DatumKontrole"
+           type="datetime-local"
+           max="@ViewBag.MaxDatum"
+           asp-format="{0:yyyy-MM-ddTHH:mm}"
+           class="form-control" />
+    <div class="form-text">Datum u budućnosti nije dozvoljen.</div>
+    <span asp-validation-for="DatumKontrole" class="text-danger"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="InspekcijskoTijeloId" class="form-label"></label>
+    <select asp-for="InspekcijskoTijeloId"
+            asp-items="ViewBag.InspekcijskaTijela"
+            class="form-select">
+        <option value="0">Izaberite inspekcijsko tijelo</option>
+    </select>
+    <span asp-validation-for="InspekcijskoTijeloId" class="text-danger"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="ProizvodId" class="form-label"></label>
+    <select asp-for="ProizvodId"
+            asp-items="ViewBag.Proizvodi"
+            class="form-select">
+        <option value="0">Izaberite proizvod</option>
+    </select>
+    <span asp-validation-for="ProizvodId" class="text-danger"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="RezultatiKontrole" class="form-label"></label>
+    <textarea asp-for="RezultatiKontrole" class="form-control" rows="6"></textarea>
+    <span asp-validation-for="RezultatiKontrole" class="text-danger"></span>
+</div>
+
+<fieldset class="mb-3">
+    <legend class="col-form-label">Proizvod siguran</legend>
+    <div class="form-check">
+        <input asp-for="ProizvodSiguran" type="radio" value="true" id="siguranDa" class="form-check-input" />
+        <label for="siguranDa" class="form-check-label">DA</label>
+    </div>
+    <div class="form-check">
+        <input asp-for="ProizvodSiguran" type="radio" value="false" id="siguranNe" class="form-check-input" />
+        <label for="siguranNe" class="form-check-label">NE</label>
+    </div>
+</fieldset>

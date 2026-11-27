@@ -1,0 +1,27 @@
+@model InspekcijskeKontrole.Web.Models.Proizvod
+
+@{
+    ViewData["Title"] = "Detalji proizvoda";
+}
+
+<h1 class="h3 mb-3">Detalji proizvoda</h1>
+
+<dl class="row">
+    <dt class="col-sm-3">Naziv proizvoda</dt>
+    <dd class="col-sm-9">@Model.Naziv</dd>
+
+    <dt class="col-sm-3">Proizvođač</dt>
+    <dd class="col-sm-9">@Model.Proizvodjac</dd>
+
+    <dt class="col-sm-3">Serijski broj</dt>
+    <dd class="col-sm-9">@(Model.SerijskiBroj ?? "–")</dd>
+
+    <dt class="col-sm-3">Zemlja porijekla</dt>
+    <dd class="col-sm-9">@Model.ZemljaPorijekla</dd>
+
+    <dt class="col-sm-3">Opis</dt>
+    <dd class="col-sm-9">@(Model.Opis ?? "–")</dd>
+</dl>
+
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Izmijeni</a>
+<a asp-action="Index" class="btn btn-secondary">Nazad</a>

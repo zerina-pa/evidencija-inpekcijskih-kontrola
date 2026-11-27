@@ -1,0 +1,83 @@
+@model InspekcijskeKontrole.Web.ViewModels.IzvjestajKontrolaViewModel
+
+@{
+    ViewData["Title"] = "Izvještaj - kontrole po inspekcijskom tijelu";
+}
+
+<main class="izvjestaj">
+    <div class="d-flex justify-content-between align-items-start mb-3 izvestaj-akcije">
+        <h1 class="h3">Izvještaj - kontrole po inspekcijskom tijelu</h1>
+        <div class="text-end">
+            <button type="button"
+                    class="btn btn-outline-primary me-2"
+                    onclick="window.print();">
+                Štampaj
+            </button>
+            <a asp-action="KontrolePoTijelu"
+               class="btn btn-secondary">
+                Novi izvještaj
+            </a>
+        </div>
+    </div>
+
+    <dl class="row izvjestaj-zaglavlje">
+        <dt class="col-sm-3">Inspekcijsko tijelo</dt>
+        <dd class="col-sm-9">@Model.Tijelo.Naziv</dd>
+
+        <dt class="col-sm-3">Inspektorat</dt>
+        <dd class="col-sm-9">@Model.Tijelo.Inspektorat.GetDisplayName()</dd>
+
+        <dt class="col-sm-3">Nadležnost</dt>
+        <dd class="col-sm-9">@Model.Tijelo.Nadleznost.GetDisplayName()</dd>
+
+        <dt class="col-sm-3">Period</dt>
+        <dd class="col-sm-9">
+            @Model.DatumOd.ToString("dd.MM.yyyy.") -
+            @Model.DatumDo.ToString("dd.MM.yyyy.")
+        </dd>
+
+        <dt class="col-sm-3">Datum i vrijeme generisanja</dt>
+        <dd class="col-sm-9">@Model.DatumGenerisanja.ToString("dd.MM.yyyy. HH:mm")</dd>
+    </dl>
+
+    @if (Model.Kontrole.Count == 0)
+    {
+        <div class="alert alert-info" role="alert">
+            Nema kontrola za izabrani period.
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped align-middle">
+                <thead>
+                    <tr>
+                        <th>Datum i vrijeme</th>
+                        <th>Naziv proizvoda</th>
+                        <th>Serijski broj</th>
+                        <th>Proizvod siguran</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var kontrola in Model.Kontrole)
+                {
+                    <tr>
+                        <td>
+                            <a asp-controller="Izvjestaji"
+                               asp-action="Zapisnik"
+                               asp-route-id="@kontrola.Id">
+                                @kontrola.DatumKontrole.ToString("dd.MM.yyyy. HH:mm")
+                            </a>
+                        </td>
+                        <td>@kontrola.Proizvod.Naziv</td>
+                        <td>@(kontrola.Proizvod.SerijskiBroj ?? "–")</td>
+                        <td>@(kontrola.ProizvodSiguran ? "DA" : "NE")</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+
+    <p class="fw-bold">Ukupan broj kontrola: @Model.UkupanBrojKontrola</p>
+</main>

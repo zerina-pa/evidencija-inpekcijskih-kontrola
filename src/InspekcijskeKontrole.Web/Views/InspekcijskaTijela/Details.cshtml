@@ -1,0 +1,24 @@
+@model InspekcijskeKontrole.Web.Models.InspekcijskoTijelo
+
+@{
+    ViewData["Title"] = "Detalji inspekcijskog tijela";
+}
+
+<h1 class="h3 mb-3">Detalji inspekcijskog tijela</h1>
+
+<dl class="row">
+    <dt class="col-sm-3">Naziv inspekcijskog tijela</dt>
+    <dd class="col-sm-9">@Model.Naziv</dd>
+
+    <dt class="col-sm-3">Inspektorat</dt>
+    <dd class="col-sm-9">@Model.Inspektorat.GetDisplayName()</dd>
+
+    <dt class="col-sm-3">Nadležnost</dt>
+    <dd class="col-sm-9">@Model.Nadleznost.GetDisplayName()</dd>
+
+    <dt class="col-sm-3">Kontakt osoba</dt>
+    <dd class="col-sm-9">@Model.KontaktOsoba</dd>
+</dl>
+
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Izmijeni</a>
+<a asp-action="Index" class="btn btn-secondary">Nazad</a>

@@ -1,0 +1,19 @@
+@model InspekcijskeKontrole.Web.ViewModels.InspekcijskaKontrolaFormModel
+
+@{
+    ViewData["Title"] = "Izmjena inspekcijske kontrole";
+}
+
+<h1 class="h3 mb-3">Izmjena inspekcijske kontrole</h1>
+
+<form asp-action="Edit" asp-route-id="@Model.Id" method="post" class="col-lg-8">
+    <input asp-for="Id" type="hidden" />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <partial name="_Form" model="Model" />
+    <button type="submit" class="btn btn-primary">Sačuvaj izmjene</button>
+    <a asp-action="Index" class="btn btn-secondary">Nazad</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

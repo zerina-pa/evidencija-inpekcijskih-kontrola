@@ -18,7 +18,25 @@ generisanje izvještaja o kontrolama po inspekcijskom tijelu i zapisnika pojedin
 - xUnit (testovi)
 
 ## Pokretanje
-> TODO: dopuniti kada aplikacija bude spremna (preduslovi, komande, demo podaci).
+Preduslov je instaliran .NET 10 SDK.
+
+1. Klonirajte repozitorij i uđite u korijenski folder projekta:
+   ```powershell
+   git clone <URL-REPOZITORIJUMA>
+   cd evidencija-inpekcijskih-kontrola
+   ```
+2. Pokrenite aplikaciju iz korijenskog foldera:
+   ```powershell
+   dotnet run --project src/InspekcijskeKontrole.Web/InspekcijskeKontrole.Web.csproj
+   ```
+3. Otvorite adresu prikazanu u terminalu, obično `https://localhost:<port>` ili `http://localhost:<port>`.
+
+Pokrenite testove iz korijenskog foldera:
+```powershell
+dotnet test InspekcijskeKontrole.sln
+```
+
+Za resetovanje baze, zaustavite aplikaciju i obrišite fajl `src/InspekcijskeKontrole.Web/inspekcije.db` zajedno sa opcionalnim `.db-shm` i `.db-wal` fajlovima. Ponovo pokrenite aplikaciju: migracija će kreirati praznu bazu, a FZ-06 demo podaci će se automatski učitati.
 
 ## Dokumentacija
 - [Funkcionalni zahtjevi](docs/funkcionalni_zahtjevi.md)
